@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Tap to Earn Coins</title>
+    <style>
+          /* Add this to prevent zooming on mobile devices */
+          * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Add this to make the layout responsive */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           height: 100vh;
+            margin: 0;
+            background-color: #141414;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            color: #3a3a3a00;
+            height: 100%;
+            width: 100%;
+            
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #03030300;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: 10%;
+            border: 1px solid #dbdbdb00;
+            border-radius: 10px;
+
+            
+        }
+
+        .image-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            opacity: 100%;
+            
+        }
+        .image-container2 {
+            position: absolute;
+            width: 10%;
+            height: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            opacity: 40%;
+            box-shadow: 150px 150px 150px 150px rgba(140, 0, 255, 0.836);
+            border-radius: 50%
+            
+        }
+
+        .image-container img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .spin {
+            animation: spin 3s linear infinite;
+            position: absolute;
+            z-index: -1;
+            width: 200px;
+            height: 200px;
+        }
+
+       
+
+        .icon{
+            position: absolute;
+          
+            background-color: rgba(0, 0, 0, 0);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: large;
+            font-weight: bold;
+            font-size: 30px;
+
+        }
+
+        .icon2{
+            
+           
+            background-color: rgba(0, 0, 0, 0);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            
+            font-size: 10px;
+            opacity: 40%;
+
+        }
+
+
+       
+
+        
+
+        .claim-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(0, 183, 255);
+            font-size: 20px;
+            font-weight: bold;
+            animation: claim 1s ease-out;
+            text-shadow: 0 0 5px rgba(0, 183, 255, 0.5);
+            font-family: 'Courier New', Courier, monospace; /* Blue color shadow */
+        }
+
+       
+
+        .image-containero {
+            position: absolute;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            opacity: 40%;
+            box-shadow: 0 0 200px 200px rgba(140, 0, 255, 0.836);
+            border-radius: 50%}
+
+       
+
+        .wallet {
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            top: calc(0% - 0px);
+            padding: 5px;
+        }
+
+        .balance {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 50px;
+        }
+
+        .claim {
+            height: 30px;
+             width: 100px;
+             border-radius: 5px;
+            background-color: #cc00ff;
+            color: #ffffff;
+            cursor: auto;
+            
+
+        }
+
+        /* Add menu bar styles */
+        .bottom-nav {
+            position: fixed;
+            bottom: 50px;
+            height: 30px;
+            width: 300px;
+            background-color: #383838;
+            color: #c9c9c9;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 20px;
+            z-index: 100;
+            border: 1px solid #ffffff;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bottom-nav img {
+            width: 35px;
+            height: 35px;
+            margin-bottom: 6px;
+        }
+
+        .bottom-nav span {
+            font-weight: bold;
+        }
+
+        .bottom-nav a:active {
+            transform: translateY(10px);
+            background-color: #242424d7;
+            border-radius: 30px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes claim {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(2);
+            }
+        }
+
+
+        /* Fillup line */
+        .fillup-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: calc(100% - 0px);
+            width: 100%;
+            height: 10px;
+            background-color: #302f2f;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #ff8800;
+            border-radius: 5px;
+        }
+        
+
+         /* Starry Night Animation */
+         .sky {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+           
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgb(255, 136, 0);
+            border-radius: 50%;
+            animation: blink 0s infinite ease-in-out, move 5s linear infinite;
+        }
+
+        
+        
+
+
+
+        .star:nth-child(1) { top: 80%; left: 10%; animation-duration: 3s, 5s; }
+        .star:nth-child(2) { top: 90%; left: 20%; animation-duration: 2.5s, 4s; }
+        .star:nth-child(3) { top: 85%; left: 30%; animation-duration: 2.8s, 6s; }
+        .star:nth-child(4) { top: 75%; left: 40%; animation-duration: 2.6s, 5s; }
+        .star:nth-child(5) { top: 80%; left: 50%; animation-duration: 2.7s, 6s; }
+        .star:nth-child(6) { top: 90%; left: 60%; animation-duration: 3.1s, 7s; }
+        .star:nth-child(7) { top: 85%; left: 70%; animation-duration: 3.2s, 6s; }
+        .star:nth-child(8) { top: 75%; left: 80%; animation-duration: 3s, 5s; }
+        .star:nth-child(9) { top: 80%; left: 90%; animation-duration: 2.9s, 6s; }
+        .star:nth-child(10) { top: 90%; left: 95%; animation-duration: 2.8s, 5s; }
+
+        .star:nth-child(11) { top: 70%; left: 5%; animation-duration: 3.5s, 6.5s; }
+        .star:nth-child(12) { top: 85%; left: 15%; animation-duration: 2.7s, 4.5s; }
+        .star:nth-child(13) { top: 75%; left: 25%; animation-duration: 2.9s, 5.5s; }
+        .star:nth-child(14) { top: 65%; left: 35%; animation-duration: 2.6s, 5.2s; }
+        .star:nth-child(15) { top: 78%; left: 45%; animation-duration: 3.1s, 6.1s; }
+        .star:nth-child(16) { top: 87%; left: 55%; animation-duration: 3.3s, 7.1s; }
+        .star:nth-child(17) { top: 72%; left: 65%; animation-duration: 2.8s, 5.8s; }
+        .star:nth-child(18) { top: 77%; left: 75%; animation-duration: 2.6s, 5.4s; }
+        .star:nth-child(19) { top: 83%; left: 85%; animation-duration: 3s, 6s; }
+        .star:nth-child(20) { top: 93%; left: 90%; animation-duration: 3.4s, 7s; }
+
+        .star:nth-child(21) { top: 68%; left: 12%; animation-duration: 2.7s, 5.7s; }
+        .star:nth-child(22) { top: 82%; left: 22%; animation-duration: 3.1s, 6.5s; }
+        .star:nth-child(23) { top: 78%; left: 32%; animation-duration: 2.9s, 5.6s; }
+        .star:nth-child(24) { top: 67%; left: 42%; animation-duration: 3s, 6.3s; }
+        .star:nth-child(25) { top: 81%; left: 52%; animation-duration: 2.8s, 5.2s; }
+        .star:nth-child(26) { top: 74%; left: 62%; animation-duration: 2.7s, 5.7s; }
+        .star:nth-child(27) { top: 79%; left: 72%; animation-duration: 3.3s, 6.8s; }
+        .star:nth-child(28) { top: 89%; left: 82%; animation-duration: 2.9s, 5.9s; }
+        .star:nth-child(29) { top: 91%; left: 87%; animation-duration: 3s, 6.4s; }
+        .star:nth-child(30) { top: 76%; left: 95%; animation-duration: 3.5s, 6.5s; }
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes move {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-100vh); }
+        }
+
+
+       
+          
+          .central {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            box-shadow: 0.5em 1em 1em rgb(255, 115, 0),
+              -0.5em 0.5em 1em lime,
+              0.5em -0.5em 1em cyan,
+              -0.5em -0.5em 1em yellow;
+          }
+          
+          .external-shadow {
+            width:180px;
+            height: 180px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0.5em 0.5em 3em rgb(195, 0, 255),
+              -0.5em 0.5em 3em lime,
+              0.5em -0.5em 3em cyan,
+              -0.5em -0.5em 3em yellow;
+            z-index: 999;
+            animation: rotate 3s linear infinite;
+            background-color: #00000000;
+          }
+          
+          .intern {
+            position: absolute;
+            color: white;
+            z-index: 9999;
+          }
+          
+          
+          
+          @keyframes rotate {
+            0% {
+              transform: rotate(0deg);
+            }
+          
+            50% {
+              transform: rotate(180deg);
+            }
+          
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+          
+
+
+          @keyframes scaleUpDown {
+            0%, 100% {
+              transform: scaleY(1) scaleX(1);
+            }
+          
+            50%, 90% {
+              transform: scaleY(1.1);
+            }
+          
+            75% {
+              transform: scaleY(0.95);
+            }
+          
+            80% {
+              transform: scaleX(0.95);
+            }
+          }
+          
+          @keyframes shake {
+            0%, 100% {
+              transform: skewX(0) scale(1);
+            }
+          
+            50% {
+              transform: skewX(5deg) scale(0.9);
+            }
+          }
+          
+          @keyframes particleUp {
+            0% {
+              opacity: 0;
+            }
+          
+            20% {
+              opacity: 1;
+            }
+          
+            80% {
+              opacity: 1;
+            }
+          
+            100% {
+              opacity: 0;
+              top: -100%;
+              transform: scale(0.5);
+            }
+          }
+          
+          @keyframes glow {
+            0%, 100% {
+              background-color: #ef5a00;
+            }
+          
+            50% {
+              background-color: #ff7800;
+            }
+          }
+          
+          .fire {
+            position: absolute;
+            top: calc(80% - 50px);
+            
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .boost {
+            position: absolute;
+            top: calc(80% - 50px);
+            left: 50px;
+            width: 100px;
+            height: 35px;
+            background-color: rgba(48, 48, 48, 0);
+            border-radius: 10px;
+            font-weight: bold;
+            display: flex;
+            align-items: center; /* Align items vertically */
+           
+          }
+          
+          .tboost {
+            color: #ffffff;
+            background-color: rgba(48, 48, 48, 0);
+            margin: 0; /* Remove margin to align properly */
+          }
+          
+          .iconbo {
+            height: 20px;
+            width: 20px;
+            display: flex;
+        
+            align-items: center; /* Center the icon vertically */
+          }
+          
+          .fire-center {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            animation: scaleUpDown 3s ease-out;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+          }
+          
+          .fire-center .main-fire {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(farthest-corner at 10px 0, #d43300 0%, #ef5a00 95%);
+            transform: scaleX(0.8) rotate(45deg);
+            border-radius: 0 40% 60% 40%;
+            filter: drop-shadow(0 0 10px #aa22d4);
+          }
+          
+          .fire-center .particle-fire {
+            position: absolute;
+            top: 60%;
+            left: 45%;
+            width: 10px;
+            height: 10px;
+            background-color: #ef5a00;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 10px #d43322);
+            animation: particleUp 2s ease-out 0;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+          }
+          
+          .fire-right {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            animation: shake 2s ease-out 0;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+          }
+          
+          .fire-right .main-fire {
+            position: absolute;
+            top: 15%;
+            right: -25%;
+            width: 80%;
+            height: 80%;
+            background-color: #ef5a00;
+            transform: scaleX(0.8) rotate(45deg);
+            border-radius: 0 40% 60% 40%;
+            filter: drop-shadow(0 0 10px #d43322);
+          }
+          
+          .fire-right .particle-fire {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background-color: #ef5a00;
+            transform: scaleX(0.8) rotate(45deg);
+            border-radius: 50%;
+            filter: drop-shadow(0 0 10px #d43322);
+            animation: particleUp 2s ease-out 0;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+          }
+          
+          .fire-left {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            animation: shake 3s ease-out 0;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+          }
+          
+          .fire-left .main-fire {
+            position: absolute;
+            top: 15%;
+            left: -20%;
+            width: 80%;
+            height: 80%;
+            background-color: #ef5a00;
+            transform: scaleX(0.8) rotate(45deg);
+            border-radius: 0 40% 60% 40%;
+            filter: drop-shadow(0 0 10px #d43322);
+          }
+          
+          .fire-left .particle-fire {
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            width: 10%;
+            height: 10%;
+            background-color: #ef5a00;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 10px #d43322);
+            animation: particleUp 3s infinite ease-out 0;
+            animation-fill-mode: both;
+          }
+          
+          .fire-bottom .main-fire {
+            position: absolute;
+            top: 30%;
+            left: 20%;
+            width: 75%;
+            height: 75%;
+            background-color: #ff7800;
+            transform: scaleX(0.8) rotate(45deg);
+            border-radius: 0 40% 100% 40%;
+            filter: blur(10px);
+            animation: glow 2s ease-out 0;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+          }
+          
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        
+        <div class="container" id="container">
+            
+            <div class="loader">
+                <div class="intern">
+             </div>
+                  <div class="external-shadow">
+                      <div class="central">
+                   </div>
+                    </div>
+             </div>
+             
+            <div class="image-containero">
+                
+                <img src="https://raw.githubusercontent.com/ayush787878/ni.github.io/main/images/WhatsApp_Image_2024-06-12_at_20.02_3__1_-modified-removebg-preview.png" alt="Image 1" class="spin" width="200" height="200">
+            </div>
+            
+            <div class="image-container">
+                <img src="https://raw.githubusercontent.com/ayush787878/ni.github.io/main/images/coin%202%20(1).png" alt="Image 2">
+                
+            </div>
+           
+            <div class="fire">
+                <div class="fire-left">
+                  <div class="main-fire"></div>
+                  <div class="particle-fire"></div>
+                </div>
+                <div class="fire-center">
+                  <div class="main-fire"></div>
+                  <div class="particle-fire"></div>
+                </div>
+                <div class="fire-right">
+                  <div class="main-fire"></div>
+                  <div class="particle-fire"></div>
+                </div>
+                <div class="fire-bottom">
+                  <div class="main-fire"></div>
+                </div>
+            </div>
+            
+            
+             
+
+             
+            
+            <!-- Fillup line -->
+            <div class="sky">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+            </div>
+
+            <div class="boost">
+                <div class="tboost">BOOST</div>
+                <img class="iconbo"src="https://cdn3d.iconscout.com/3d/premium/thumb/startup-10660667-8550527.png"></div>
+            </div>
+       
+        </div>
+       
+
+        <!-- Add menu bar -->
+        <div class="bottom-nav">
+            <a href="#">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/pickaxe-11321508-9067098.png?f=webp" alt="Mine">
+                <span>Mine</span>
+            </a>
+            <a href="file:///C:/Users/ayush/OneDrive/Desktop/nitro/task.html">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/user-11321524-9067097.png?f=webp" alt="Friends">
+                <span>Friends</span>
+            </a>
+            <a href="#">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/funding-11572158-9449848.png?f=webp" alt="Airdrop">
+                <span>Airdrop</span>
+            </a>
+            <a href="#">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/wallet-3750977-3145186.png?f=webp" alt="Wallet">
+                <span>Wallet</span>
+            </a>
+            <a href="#">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/pickaxe-11321508-9067098.png?f=webp" alt="Mine">
+                <span>Mine</span>
+            </a>
+        </div>
+
+    </div>
+    <div class="wallet">
+        <div class="balance" id="coinCounter">000</div>
+        <div class="icon" id="icon">ꝏ</div>
+        <div class="icon2" id="icon2">$1=∞1000000</div>
+        <button class="claim" onclick="window.location.href='https://example.com/page1';">Claim</button>
+        <div class="fillup-line">
+            <div class="progress" id="progress"></div>
+            </div>
+             </div>
+       
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('container');
+            const coinCounter = document.getElementById('coinCounter');
+            const fillupProgress = document.getElementById('progress');
+
+            let coins = parseInt(localStorage.getItem('coins')) || 0;
+            let multiTapAllowed = coins >= 200;
+            const maxCoins = 300000; // Maximum coins to fill the line
+
+            // Check for bonus coins from join.html
+            const bonusCoins = localStorage.getItem('bonusCoins');
+            if (bonusCoins) {
+                coins += parseInt(bonusCoins);
+                localStorage.removeItem('bonusCoins'); // Remove bonus coins after adding
+            }
+
+            // Update coin counter display
+            function updateCoinCounter() {
+                coinCounter.textContent = `${coins}`;
+            }
+
+            // Increment coins by 1
+            function incrementCoins(amount = 1) {
+                coins += amount;
+                localStorage.setItem('coins', coins);
+                updateCoinCounter();
+                updateFillupLine();
+                checkMultiTapAllowed();
+            }
+
+            // Check if multitap is allowed
+            function checkMultiTapAllowed() {
+                if (coins >= 200 &&!multiTapAllowed) {
+                    multiTapAllowed = true;
+                    container.style.cursor = 'pointer';
+                }
+            }
+
+            // Show coin claim animation
+            function showClaimAnimation(x, y, amount = 1) {
+                const claimAnimation = document.createElement('div');
+                claimAnimation.classList.add('claim-animation');
+                claimAnimation.textContent = `💧${amount}`;
+                claimAnimation.style.left = `${x}px`;
+                claimAnimation.style.top = `${y}px`;
+                document.body.appendChild(claimAnimation);
+                setTimeout(() => {
+                    claimAnimation.remove();
+                }, 1000);
+            }
+
+            // Add click event to container
+            container.addEventListener('click', (event) => {
+                if (multiTapAllowed && event.shiftKey) {
+                    incrementCoins(2);
+                    showClaimAnimation(event.clientX - 20, event.clientY - 20, 2);
+                } else {
+                    incrementCoins();
+                    showClaimAnimation(event.clientX, event.clientY);
+                }
+            });
+
+            // Function to update the fillup line based on coins collected
+            function updateFillupLine() {
+                const percentage = (coins % maxCoins) / maxCoins * 100;
+                fillupProgress.style.width = `${percentage}%`;
+            }
+
+            // Auto increment coins by 3 every second
+            setInterval(() => {
+                incrementCoins(3);
+            }, 1000);
+
+            // Initial update of the coin counter and fillup line
+            updateCoinCounter();
+            updateFillupLine();
+            checkMultiTapAllowed();
+        });
+    </script>
+    
+</body>
+</html>
