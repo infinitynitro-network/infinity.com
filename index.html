@@ -15,7 +15,13 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             -ms-user-select: none;
             user-select: none;
         }
-        
+        #uid-display {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
         /* Add this to make the layout responsive */
         html, body {
             width: 100%;
@@ -607,6 +613,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     </style>
 </head>
 <body>
+    <div id="uid-display"></div>
     <div class="main-container">
         
         <div class="container" id="container">
@@ -686,7 +693,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
                 <div class="star"></div>
                 <div class="star"></div>
             </div>
-
+             
             <div class="boost">
                 <div class="tboost">BOOST</div>
                 <img class="iconbo"src="https://cdn3d.iconscout.com/3d/premium/thumb/startup-10660667-8550527.png"></div>
@@ -732,6 +739,13 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
        
     </div>
     <script>
+        let uid = localStorage.getItem('uid');
+    if (!uid) {
+      uid = Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('uid', uid);
+    }
+    document.getElementById('uid-display').innerText = ` ${uid}`;
+    
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('container');
             const coinCounter = document.getElementById('coinCounter');
