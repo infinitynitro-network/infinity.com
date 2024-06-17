@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim 25000 Coins</title>
+  <style>
+    body {
+      background-color: #141414;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #222;
+      width: 400px;
+      height: 50px;
+      margin: 10px auto;
+      font-weight: bold;
+    }
+
+    .amountt {
+      display: flex;
+      align-items: center;
+      color: #ddd;
+      width: 300px;
+      height: 50px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bolder;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      margin-right: 5px;
+    }
+
+    .text {
+      font-size: 14px;
+      margin-right: 10px;
+      font-weight: bold;
+      color: rgb(255, 255, 255);
+    }
+
+    .amount {
+      font-size: 17px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .button {
+      background-color: #ff5100;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #6d6d6da4;
+    }
+
+    .layout {
+      margin-bottom: 20px;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    /* Add menu bar styles */
+    .bottom-nav {
+      position: fixed;
+      bottom: 30px;
+      height: 40px;
+      width: 400px;
+      background-color: #474747;
+      color: #fff;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 20px;
+      z-index: 100;
+      border: 1px solid #ffffff;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-nav img {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 5px;
+    }
+
+    .bottom-nav span {
+      font-weight: bold;
+    }
+
+    .bottom-nav a:active {
+      transform: translateY(10px);
+      background-color: #242424d7;
+      border-radius: 50px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes claim {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+      }
+    }
+
+    .infinity {
+      color: #fff;
+      margin-top: 10px;
+      font-size: 38px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .image2 {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <div class="infinity" id="infinity">INFINITY NITRO</div>
+    <div class="image2" id="image2">
+      <img src="C:\Users\ayush\Downloads\coin 2 (1).png" class="image2">
+    </div>
+    <div class="container9">
+      <div class="amountt" id="amountt">Claimed = 🟡 0</div>
+      <div class="container10">
+        <div class="send" id="send">Send</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="layout">
+    <div class="container">
+      <div>
+        <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-telegram-6776805-5528941.png?f=webp" alt="Telegram Icon" class="icon">
+      </div>
+      <div style="display: flex; align-items: center; gap: 5px;">
+        <div style="margin-right: 5px;">🟡 25000</div>
+        <button class="button" onclick="claimCoins('https://example.com/claim1')">Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="container">
+      <div>
+        <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-x-10193145-8250224.png?f=webp" alt="Telegram Icon" class="icon">
+      </div>
+      <div style="display: flex; align-items: center; gap: 5px;">
+        <div style="margin-right: 5px;">🟡 25000</div>
+        <button class="button" onclick="claimCoins('https://example.com/claim2')">Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="container">
+      <div>
+        <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-instagram-5622965-4684822.png?f=webp" alt="Telegram Icon" class="icon">
+      </div>
+      <div style="display: flex; align-items: center; gap: 5px;">
+        <div style="margin-right: 5px;">🟡 25000</div>
+        <button class="button" onclick="claimCoins('https://example.com/claim3')">Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="container">
+      <div>
+        <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-youtube-6776800-5528944.png?f=webp" alt="Telegram Icon" class="icon">
+      </div>
+      <div style="display: flex; align-items: center; gap: 5px;">
+        <div style="margin-right: 5px;"> 🟡 25000</div>
+        <button class="button" onclick="claimCoins('https://example.com/claim4')">Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function claimCoins(url) {
+      window.open(url, '_blank');
+
+      setTimeout(() => {
+        const amountElement = document.getElementById('amountt');
+        const currentAmount = parseInt(amountElement.innerText.split('🟡 ')[1]);
+        amountElement.innerText = `Claimed = 🟡 ${currentAmount + 10000}`;
+      }, 20000);
+    }
+  </script>
+</body>
+</html>
