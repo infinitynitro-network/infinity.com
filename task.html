@@ -165,18 +165,55 @@
       flex-direction: column;
       align-items: center;
     }
+     .bottom-nav {
+            position: fixed;
+            bottom: 50px;
+            height: 30px;
+            width: 300px;
+            background-color: #383838;
+            color: #c9c9c9;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 20px;
+            z-index: 100;
+            border: 1px solid #ffffff;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bottom-nav img {
+            width: 35px;
+            height: 35px;
+            margin-bottom: 6px;
+        }
+
+        .bottom-nav span {
+            font-weight: bold;
+        }
+
+        .bottom-nav a:active {
+            transform: translateY(10px);
+            background-color: #242424d7;
+            border-radius: 30px;
+        }
   </style>
 </head>
 <body>
   <div class="center">
     <div class="infinity" id="infinity">INFINITY NITRO</div>
     <div class="image2" id="image2">
-      <img src="https://raw.githubusercontent.com/ayush787878/ni.github.io/main/images/coin%202%20(1).png" class="image2">
+      <img src="C:\Users\ayush\Downloads\coin 2 (1).png" class="image2">
     </div>
-    <div class="container9">
-      <div class="amountt" id="amountt">Claimed = 🟡 0</div>
-      <div class="container10">
-        <div class="send" id="send">Send</div>
+   
+        
       </div>
     </div>
   </div>
@@ -188,7 +225,7 @@
       </div>
       <div style="display: flex; align-items: center; gap: 5px;">
         <div style="margin-right: 5px;">🟡 25000</div>
-        <button class="button" onclick="claimCoins('https://example.com/claim1')">Claim</button>
+        <button class="button" onclick="claimCoins('https://t.me/infinitynitrocommunity')">Claim</button>
       </div>
     </div>
   </div>
@@ -200,7 +237,7 @@
       </div>
       <div style="display: flex; align-items: center; gap: 5px;">
         <div style="margin-right: 5px;">🟡 25000</div>
-        <button class="button" onclick="claimCoins('https://example.com/claim2')">Claim</button>
+        <button class="button" onclick="claimCoins('https://x.com/infinitynetro?t=KhzeKhTjvkaYFhNCLoiTGw&s=09')">Claim</button>
       </div>
     </div>
   </div>
@@ -212,7 +249,7 @@
       </div>
       <div style="display: flex; align-items: center; gap: 5px;">
         <div style="margin-right: 5px;">🟡 25000</div>
-        <button class="button" onclick="claimCoins('https://example.com/claim3')">Claim</button>
+        <button class="button" onclick="claimCoins('https://www.instagram.com/infinity.nitro?igsh=NjVhczNxZjF4YXdn')">Claim</button>
       </div>
     </div>
   </div>
@@ -224,20 +261,51 @@
       </div>
       <div style="display: flex; align-items: center; gap: 5px;">
         <div style="margin-right: 5px;"> 🟡 25000</div>
-        <button class="button" onclick="claimCoins('https://example.com/claim4')">Claim</button>
+        <button class="button" onclick="claimCoins('https://youtube.com/@infinity_nitro_network?si=kWr9Fr1ZvZpMv5iq')">Claim</button>
       </div>
     </div>
   </div>
-
+    <!-- Add menu bar -->
+        <div class="bottom-nav">
+            <a href="#">
+                <img src="index.html" alt="Mine">
+                <span>Mine</span>
+            </a>
+            <a href="task.html">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/add-user-8980041-7281885.png?f=webp" alt="Friends">
+                <span>Friends</span>
+            </a>
+            <a href="#">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/funding-11572158-9449848.png?f=webp" alt="Airdrop">
+                <span>Airdrop</span>
+            </a>
+            <a href="#">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/wallet-3750977-3145186.png?f=webp" alt="Wallet">
+                <span>Wallet</span>
+            </a>
+            <a href="#">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/pickaxe-11321508-9067098.png?f=webp" alt="Mine">
+                <span>Mine</span>
+            </a>
+        </div>
   <script>
+    document.querySelectorAll('.button').forEach(button => {
+      button.addEventListener('click', function() {
+        const url = this.getAttribute('data-url');
+        claimCoins(url);
+      });
+    });
     function claimCoins(url) {
-      window.open(url, '_blank');
-
-      setTimeout(() => {
-        const amountElement = document.getElementById('amountt');
-        const currentAmount = parseInt(amountElement.innerText.split('🟡 ')[1]);
-        amountElement.innerText = `Claimed = 🟡 ${currentAmount + 10000}`;
-      }, 20000);
+      // Open the specified link
+      window.open(url);
+    
+      // Collect 25000 coins (you can adjust this logic based on your requirements)
+      let coins = localStorage.getItem('coins') || 0;
+      coins = parseInt(coins) + 25000;
+      localStorage.setItem('coins', coins);
+    
+      // Redirect to the second page (index.html) to update the coin counter
+      window.location.href = 'index.html';
     }
   </script>
 </body>
