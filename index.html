@@ -134,20 +134,31 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
        
 
         
-
         .claim-animation {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             color: rgb(0, 183, 255);
             font-size: 20px;
             font-weight: bold;
             animation: claim 1s ease-out;
+            
             text-shadow: 0 0 5px rgba(0, 183, 255, 0.5);
-            font-family: 'Courier New', Courier, monospace; /* Blue color shadow */
+            font-family: 'Courier New', Courier, monospace;
+            transform: translate(-50%, 0);
+            left: 50%;
         }
-
+        
+        @keyframes claim {
+            0% {
+                
+                top: 50%;
+                opacity: 1; /* Start position and opacity */
+            }
+            100% {
+                top: 0%;
+                opacity: 0; /* End position and opacity */
+            }
+        }
+        
        
 
         .image-containero {
@@ -176,7 +187,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         .balance {
             font-size: 24px;
             font-weight: bold;
-            margin-left: 50px;
+            margin-left: 10px;
         }
 
         .claim {
@@ -186,10 +197,16 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             background-color: #cc00ff;
             color: #ffffff;
             cursor: auto;
-            align-items: center;
-            text: center; 
+            
+            text-align: center; 
             
 
+        }
+
+        .coinimg{
+            height: 50px;
+            width: 50px;
+            
         }
 
         /* Add menu bar styles */
@@ -206,7 +223,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             align-items: center;
             border-radius: 20px;
             z-index: 100;
-            border: 1px solid #ffffff;
+            border: 1px solid #8d8d8d;
         }
 
         .bottom-nav a {
@@ -218,8 +235,8 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         }
 
         .bottom-nav img {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             margin-bottom: 6px;
         }
 
@@ -242,16 +259,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             }
         }
 
-        @keyframes claim {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(2);
-            }
-        }
-
+      
 
         /* Fillup line */
         .fillup-line {
@@ -352,7 +360,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             border-radius: 50%;
             box-shadow: 0.5em 1em 1em rgb(255, 115, 0),
               -0.5em 0.5em 1em lime,
-              0.5em -0.5em 1em cyan,
+              0.5em -0.5em 1em rgb(0, 174, 255),
               -0.5em -0.5em 1em yellow;
           }
           
@@ -366,7 +374,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             position: relative;
             box-shadow: 0.5em 0.5em 3em rgb(195, 0, 255),
               -0.5em 0.5em 3em lime,
-              0.5em -0.5em 3em cyan,
+              0.5em -0.5em 3em rgb(0, 132, 255),
               -0.5em -0.5em 3em yellow;
             z-index: 999;
             animation: rotate 3s linear infinite;
@@ -730,8 +738,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
     </div>
     <div class="wallet">
+        <div>   <img src="https://cdn3d.iconscout.com/3d/premium/thumb/coins-6248756-5115831.png?f=webp" class="coinimg" alt="Image "></div>
         <div class="balance" id="coinCounter">000</div>
-        <div class="icon" id="icon">ꝏ</div>
+        
         <div class="icon2" id="icon2">$1=∞1000000</div>
         <div class="claim" onclick="window.location.href='https://example.com/page1';">Claim</div>
         <div class="fillup-line">
