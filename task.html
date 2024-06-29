@@ -58,7 +58,7 @@
     #ui {
       font-weight: bolder;
       background: -webkit-linear-gradient(#B563FF, #535EFC, #0EC8EE);
-      -webkit-background-clip: text;
+     
       -webkit-text-fill-color: transparent;
       border-bottom: 4px solid transparent;
       border-image: linear-gradient(0.25turn, #535EFC, #0EC8EE, #0EC8EE);
@@ -340,7 +340,7 @@
       <div style="display: flex; align-items: center; gap: 5px;">
         <div>   <img src="https://cdn3d.iconscout.com/3d/premium/thumb/star-coins-5415774-4528559.png?f=webp" class="coinimg" alt="Image "></div>
         <div class ="amountt" style="margin-right: 5px;">25000</div>
-        <div class="button" onclick="claimCoins('https://t.me/infinitynitrocommunity')">Claim</div>
+        <button class="button" id="button-1" data-link="https://t.me/infinitynitrocommunity">Claim</button>
       </div>
     </div>
   </div>
@@ -353,7 +353,7 @@
       <div style="display: flex; align-items: center; gap: 5px;">
         <div>   <img src="https://cdn3d.iconscout.com/3d/premium/thumb/star-coins-5415774-4528559.png?f=webp" class="coinimg" alt="Image "></div>
         <div class ="amountt" style="margin-right: 5px;">25000</div>
-        <div class="button" onclick="claimCoins('https://x.com/infinitynitro_X?t=KhzeKhTjvkaYFhNCLoiTGw&s=09')">Claim</div>
+        <button class="button" id="button-1" data-link="https://x.com/infinitynitro_X?t=KhzeKhTjvkaYFhNCLoiTGw&s=09">Claim</button>
       </div>
     </div>
   </div>
@@ -366,7 +366,7 @@
       <div style="display: flex; align-items: center; gap: 5px;">
         <div>   <img src="https://cdn3d.iconscout.com/3d/premium/thumb/star-coins-5415774-4528559.png?f=webp" class="coinimg" alt="Image "></div>
         <div class ="amountt" style="margin-right: 5px;">25000</div>
-        <div class="button" onclick="claimCoins('https://www.instagram.com/infinity.nitro?igsh=NjVhczNxZjF4YXdn')">Claim</div>
+        <button class="button" id="button-1" data-link="https://www.instagram.com/infinity.nitro/?igsh=NjVhczNxZjF4YXdn">Claim</button>
       </div>
     </div>
   </div>
@@ -379,7 +379,7 @@
       <div style="display: flex; align-items: center; gap: 5px;">
         <div>   <img src="https://cdn3d.iconscout.com/3d/premium/thumb/star-coins-5415774-4528559.png?f=webp" class="coinimg" alt="Image "></div>
         <div class ="amountt" style="margin-right: 5px;"> 25000</div>
-        <div class="button" onclick="claimCoins('https://youtube.com/@infinity_nitro_network?si=kWr9Fr1ZvZpMv5iq')">Claim</div>
+        <button class="button" id="button-1" data-link="https://www.youtube.com/@infinity_nitro_network">Claim</button>
       </div>
     </div>
   </div>
@@ -407,32 +407,41 @@
             </a>
         </div>
         <script>
-            let claimed = localStorage.getItem('claimed') || '{}';
-          
-            document.querySelectorAll('.button').forEach(button => {
-              button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                const coinAmount = 10000;
-                const buttonId = this.getAttribute('id');
-          
-                if (!claimed[buttonId]) {
-                  claimed[buttonId] = true;
-                  localStorage.setItem('claimed', JSON.stringify(claimed));
-          
-                  // Open the specified link
-                  window.open(url);
-          
-                  // Collect coins
-                  let coins = localStorage.getItem('coins') || 0;
-                  coins = parseInt(coins) + 2000;
-                  localStorage.setItem('coins', coins);
-          
-                  // Update the button text to indicate that it's already claimed
-                  this.textContent = 'Already Claimed';
-                  this.disabled = true;
-                }
-              });
-            });
+             // Get all claim buttons
+        const claimButtons = document.querySelectorAll('.button');
+
+        // Loop through each button
+        claimButtons.forEach((button) => {
+            // Get the button's ID and link
+            const buttonId = button.id;
+            const link = button.dataset.link;
+
+            // Check if the user has already claimed this bonus
+            if (localStorage.getItem(`claimed-${buttonId}`) === 'true') {
+                // If they have, update the button text and style
+                button.textContent = 'Claimed';
+                button.classList.add('button');
+                button.disabled = true;
+            } else {
+                // If they haven't, add an event listener to the button
+                button.addEventListener('click', () => {
+                    // Open the link in a new tab
+                    window.open(link, '_blank');
+
+                    // Update the user's coins in local storage
+                    const currentCoins = localStorage.getItem('coins') || 0;
+                    localStorage.setItem('coins', currentCoins + 1000);
+
+                    // Update the button text and style
+                    button.textContent = 'Claimed';
+                    button.classList.add('button');
+                    button.disabled = true;
+
+                    // Set the claimed status in local storage
+                    localStorage.setItem(`claimed-${buttonId}`, 'true');
+                });
+            }
+        });
           </script>
 
           
