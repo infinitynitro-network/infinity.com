@@ -407,8 +407,8 @@
             </a>
         </div>
         <script>
-             // Get all claim buttons
-        const claimButtons = document.querySelectorAll('.button');
+            // Get all claim buttons
+        const claimButtons = document.querySelectorAll('button');
 
         // Loop through each button
         claimButtons.forEach((button) => {
@@ -420,7 +420,7 @@
             if (localStorage.getItem(`claimed-${buttonId}`) === 'true') {
                 // If they have, update the button text and style
                 button.textContent = 'Claimed';
-                button.classList.add('button');
+                button.classList.add('claimed-button');
                 button.disabled = true;
             } else {
                 // If they haven't, add an event listener to the button
@@ -434,7 +434,7 @@
 
                     // Update the button text and style
                     button.textContent = 'Claimed';
-                    button.classList.add('button');
+                    button.classList.add('claimed-button');
                     button.disabled = true;
 
                     // Set the claimed status in local storage
