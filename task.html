@@ -429,8 +429,17 @@
                     window.open(link, '_blank');
 
                     // Update the user's coins in local storage
-                    const currentCoins = localStorage.getItem('coins') || 0;
-                    localStorage.setItem('coins', currentCoins + 1000);
+                   // Update the user's coins in local storage
+                  let currentCoins = parseInt(localStorage.getItem('coins')) || 0; // Parse as integer, default to 0 if null
+
+                 // Add 1000 coins to the current total
+             currentCoins += 1000;
+
+// Save the updated coins back to local storage
+              localStorage.setItem('coins', currentCoins);
+
+// Optionally, update the display or perform other actions as needed
+                 console.log(`Coins updated: ${currentCoins}`);
 
                     // Update the button text and style
                     button.textContent = 'Claimed';
