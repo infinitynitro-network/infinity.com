@@ -406,25 +406,35 @@
                 <span>Friends</span>
             </a>
         </div>
-  <script>
-    document.querySelectorAll('.button').forEach(button => {
-      button.addEventListener('click', function() {
-        const url = this.getAttribute('data-url');
-        claimCoins(url);
-      });
-    });
-    function claimCoins(url) {
-      // Open the specified link
-      window.open(url);
-    
-      // Collect 25000 coins (you can adjust this logic based on your requirements)
-      let coins = localStorage.getItem('coins') || 0;
-      coins = parseInt(coins) + 25000;
-      localStorage.setItem('coins', coins);
-    
-      // Redirect to the second page (index.html) to update the coin counter
-      window.location.href = 'index.html';
-    }
-  </script>
+        <script>
+            let claimed = localStorage.getItem('claimed') || '{}';
+          
+            document.querySelectorAll('.button').forEach(button => {
+              button.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                const coinAmount = 10000;
+                const buttonId = this.getAttribute('id');
+          
+                if (!claimed[buttonId]) {
+                  claimed[buttonId] = true;
+                  localStorage.setItem('claimed', JSON.stringify(claimed));
+          
+                  // Open the specified link
+                  window.open(url);
+          
+                  // Collect coins
+                  let coins = localStorage.getItem('coins') || 0;
+                  coins = parseInt(coins) + 2000;
+                  localStorage.setItem('coins', coins);
+          
+                  // Update the button text to indicate that it's already claimed
+                  this.textContent = 'Already Claimed';
+                  this.disabled = true;
+                }
+              });
+            });
+          </script>
+
+          
 </body>
 </html>
