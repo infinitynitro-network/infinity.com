@@ -210,21 +210,29 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         }
 
         /* Add menu bar styles */
-        .bottom-nav {
-            position: fixed;
-            bottom: 50px;
-            height: 30px;
-            width: 300px;
-            background-color: #383838;
-            color: #c9c9c9;
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-radius: 20px;
-            z-index: 100;
-            border: 1px solid #8d8d8d;
-        }
+       .bottom-nav {
+        position: fixed;
+        bottom: 60px;
+        left: 50%;
+        
+        transform: translateX(-50%);
+        height: 30px;
+        width: 79%;
+        background-color: #383838;
+        color: #c9c9c9;
+        padding: 20px ;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 20px;
+        z-index: 100;
+        border: 1px solid #5c5c5c;
+        overflow: hidden;
+        
+       
+        
+      }
+
 
         .bottom-nav a {
             text-decoration: none;
@@ -715,7 +723,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         <!-- Add menu bar -->
       <div class="bottom-nav">
             <a href="index.html">
-                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/pickaxe-11321508-9067098.png?f=webp" alt="Mine">
+                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/home-6775011-5575350.png?f=webp" alt="Mine">
                 <span>Mine</span>
             </a>
             <a href="task.html">
@@ -733,8 +741,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             <a href="#">
                 <img src="https://cdn3d.iconscout.com/3d/premium/thumb/user-11199370-8967022.png?f=webp" alt="friends">
                 <span>Friends</span>
-            </a>
-        </div>
+            </a></div>
 
     </div>
     <div class="wallet">
