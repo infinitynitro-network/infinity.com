@@ -9,37 +9,55 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&family=Varela&display=swap" rel="stylesheet">
     <title>Refer Team</title>
     <style>
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
         body {
-            background-color: rgb(32, 26, 36);
+            background-color: rgb(0, 0, 0);
             color: white;
             font-family: Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
             
         }
         .container {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 5px;
            
         }
         .container2 {
           
-            width: auto;
-            height: 300px;
-
-            color: white;
-            text-align: center;
-            background-color: #333;
-            border-radius: 5%;
-            border-color: aliceblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            text-align: center; /* Center text inside */
+            margin-top: 20px; 
            
           
            
         }
-            
+        .referteam{
+            font-size:  30px;
+        }
+        
+        .icon{
+            display: block;
+            height: 100px;
+            margin: 0 auto 20px auto;
+                
+            }
         .list-container {
             display: flex;
             align-items: center; /* Align items vertically in the center */
             text-align: center;
-            padding: 20px;
+           
            
         }
         
@@ -52,9 +70,9 @@
             padding: 15px 30px;
             border: none;
             border-radius: 25px;
-            font-size: 26px;
+            font-size: 20px;
             cursor: pointer;
-            margin: 20px 0;
+            
             text-align: center;
             align-items: center;
             animation: zoomInOut 1s infinite alternate;
@@ -76,54 +94,61 @@
             }
         }
         
+        
         .info-text {
             font-size: 14px;
-            margin-bottom: 10px;
+             
              opacity: 70%;
-             font-family: "Varela", sans-serif;
-             font-weight: 400;
-             font-style: normal;
+            
             
 
         }
+
+        .apear{
+            opacity: 50%;
+            font-family: "Varela", sans-serif;
+             font-weight: 400;
+             font-style: normal;
+            font-size: 20px;
+            margin-top: -7%;
+           
+           
+        }
+        .list{
+            width: 50px;
+            height: 50px; 
+            align-items: center;
+            text-align: center;
+        }
+
         .list-header {
-            font-size: 24px;
-             padding: 10px;
+            font-size: 20px;
+             
            
            
         }
         .refer-info {
-            margin-top: 50px;
+             
             font-size: 16px;
         }
 
 
-        .refer-info2{
-            opacity: 50%;
-            font-size: 15px;
-           
-           
-        }
+        
         .icon3 {
             display: block;
-            margin: 0 auto 20px auto;
+            margin: 0px;
             height: 100px;
             opacity: 50%;
-            padding: 0px 30px;
+            
           
             
         }
-        .icon {
-            display: block;
-            margin: 0 auto 20px auto;
-            height: 100px;
-                
-            padding: 0px 30px;}
-        .icon2 {
-            display: block;
-            margin: 0 auto 20px auto;
+       
+        .gift {
+            
+             
             height: 70px;
-            margin-bottom: 10px;
+          
            
           
 
@@ -143,39 +168,106 @@
         .popup.show {
             display: block;
         }
-        .img2{
-            width: 50px;
-            height: 50px; 
-            align-items: center;
-            text-align: center;
-        }
+        
       
-        .refer{
-            font-size:  40px;
-        }
-
+        .bottom-nav {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            
+            transform: translateX(-50%);
+            height: 30px;
+            width: 79%;
+            background-color: #383838;
+            color: #c9c9c9;
+            padding: 20px ;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 20px;
+            z-index: 100;
+            border: 1px solid #5c5c5c;
+            overflow: hidden;
+            
+           
+            
+          }
+    
+            .bottom-nav a {
+                text-decoration: none;
+               color: #ffffff;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               padding: 10px;
+               font-size: 14px;
+            }
+    
+            .bottom-nav img {
+                width: 35px;
+                height: 35px;
+               
+                margin-bottom: 6px;
+            }
+    
+    
+    
+    
+            .bottom-nav span {
+                font-weight: bold;
+            }
+    
+            .bottom-nav a:active {
+                transform: translateY(10px);
+                background-color: #242424d7;
+                border-radius: 30px;
+            }
         
     </style>
 </head>
 <body>
     <div class="container">
-       <h1 class="refer">Refer Team</h1>
+       <h1 class="referteam">Refer Team</h1>
        <img    src="https://cdn3d.iconscout.com/3d/premium/thumb/team-9696544-7864613.png?f=webp" alt="Invite Icon" class="icon">
         <button class="invite-btn" onclick="copyReferralLink()">Invite a Friends</button>
         <p class="info-text">!! Refer more to get Airdrop chance</p>
-        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/nft-gift-5318418-4444760.png?f=webp"  class="icon2" alt="gift">
+        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/nft-gift-5318418-4444760.png?f=webp"  class="gift" alt="gift">
        
        
     </div>
     <div class="list-container"> 
-        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/list-6433249-5526051.png?f=webp" alt="Invite Icon" class="img2">
+        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/list-6433249-5526051.png?f=webp" alt="Invite Icon" class="list">
 
         <h2 class="list-header">List of your team</h2>
        </div>
     <div class=" container2">
-       <div > <p class="refer-info2">Refer will appear</p><p class="refer-info2"> when you complete 10 refer</p></div>
+       <div > <p class=" apear">Referals will appear</p><p class=" apear"> when you complete First 10 refer</p></div>
         <img src="https://cdn3d.iconscout.com/3d/premium/thumb/increase-profit-6381672-5331165.png?f=webp   " alt="Refer Icon" class="icon3"></div>
     <div id="popup" class="popup">Link copied to clipboard!</div>
+
+
+    <div class="bottom-nav">
+        <a href="index.html">
+            <img src="https://cdn3d.iconscout.com/3d/premium/thumb/fox-wearing-cool-pixel-glasses-emoticon-9760331-7913950.png?f=webp" alt="Mine">
+            <span>Fox</span>
+        </a>
+        <a href="refer.html">
+            <img src="  https://cdn3d.iconscout.com/3d/premium/thumb/user-11199370-8967022.png?f=webp" alt="Earn">
+            <span>Team</span>
+        </a>
+        <a href="task.html">
+            <img src="https://cdn3d.iconscout.com/3d/premium/thumb/trophy-6275998-5174884.png?f=webp" alt="Airdrop">
+            <span>Task</span>
+        </a>
+        <a href="event.html">
+         <img src="https://cdn3d.iconscout.com/3d/premium/thumb/confetti-6587022-5449103.png?f=webp" alt="allet">
+         <span> Events </span>
+     </a>
+        <a href="exchange.html">
+            <img src="https://cdn3d.iconscout.com/3d/premium/thumb/dollar-coin-5781416-4848491.png?f=webp" alt="friends">
+            <span>Exchange</span>
+        </a>
+     </div>
 
     <script>
         function copyReferralLink() {
@@ -195,5 +287,4 @@
         }
     </script>
 </body>
-
 </html>
