@@ -1,3 +1,26 @@
+<?php
+// Connect to the database
+$conn = mysqli_connect("localhost", "username", "password", "database");
+
+// Check connection
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+// Update coins
+if (isset($_POST['coins'])) {
+  $coins = $_POST['coins'];
+  $query = "UPDATE users SET coins = '$coins' WHERE id = 1";
+  mysqli_query($conn, $query);
+  echo json_encode(array('coins' => $coins));
+}
+
+// Close connection
+mysqli_close($conn);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fjalla+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fjalla+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap" rel="stylesheet">
-
-  <style>
+   <style>
        /* Add this to prevent zooming on mobile devices */
        * {
         -webkit-touch-callout: none;
@@ -28,18 +49,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 80vh;
-      margin: 0; 
+     margin: auto;
+     margin-bottom: 20vh;
     }
 
   .container {
-    
+      margin-top: 70px;
       display: flex;
       align-items: center;
       flex-direction: column;
     }
    .container2 {
-        display: flex;
+      
         align-items: center;
         flex-direction: column;
        
@@ -93,7 +114,30 @@
         -webkit-tap-highlight-color: transparent; 
     }
 
-s
+    .coin-animation {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #333;
+      padding: 4px 8px;
+      border-radius: 4px;
+      animation: coinAnimation 0.5s ease-out;
+    }
+  
+    @keyframes coinAnimation {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20px) scale(1.5);
+        opacity: 0;
+      }
+    }
 
     
 
@@ -175,7 +219,7 @@ s
 
        .bottom-nav {
            position: fixed;
-           bottom: 60px;
+           bottom: 40px;
            left: 50%;
            
            transform: translateX(-50%);
@@ -192,10 +236,7 @@ s
            border: 1px solid #5c5c5c;
            overflow: hidden;
            -webkit-tap-highlight-color: transparent; 
-           font-family: "Fustat", sans-serif;
-           font-optical-sizing: auto;
-           font-weight:lighter;
-           font-style: normal;
+           
           
            
          }
@@ -212,8 +253,8 @@ s
            }
    
            .bottom-nav img {
-               width: 35px;
-               height: 35px;
+               width: 40px;
+               height: 40px;
               
                margin-bottom: 6px;
            }
@@ -300,10 +341,11 @@ s
             cursor: pointer;
              top: 10px;
            right: 20px;
-            height: 30px;
-            width: 140px;
+            height: 20px;
+            width: 110px;
             background-color: rgb(53, 53, 53);
             border: none;
+            border-color: #fff;
             color: white;
             
             cursor: pointer;
@@ -312,52 +354,47 @@ s
             position: fixed; /* to make the button a positioning context */
             padding: 10px; /* add some padding to the button */
           }
+
+
+          .adsbutton2 {
+            display: block;
+            cursor: pointer;
+             top: 0px;
+           left: 0px;
+           
+          
+            border: none;
+            color: white;
+            
+            cursor: pointer;
+            border-radius: 15px;
+          
+            position: fixed; /* to make the button a positioning context */
+            
+          }
           
           .rocket {
-            width: 30px;
-            height: 30px;
-            background-image: url('https://cdn3d.iconscout.com/3d/premium/thumb/space-shuttle-flying-9077681-7460825.png?f=webp');
+            width: 40px;
+            height: 40px;
+            background-image: url('https://cdn3d.iconscout.com/3d/premium/thumb/secured-wallet-5046524-4206899.png?f=webp');
             background-size: cover;
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            position: absolute;
-    
+            margin-top: -10px;
+           
           }
           
-          .coinads {
-            width: 22px;
-            height: 22px;
-            background-image: url('https://cdn3d.iconscout.com/3d/premium/thumb/coin-5204463-4340787.png?f=webp');
-            background-size: cover;
-            position: absolute;
-            right: 70px;
-            bottom: 4px;
-          }
           
-          .watchads {
-            position: absolute;
-            left: 50px;
-            top: 0px;
-            font-size:15px;
-            font-weight: bold;
-            color: #FFFFFF;
-            font-family: "Fustat", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: weight;
-            font-style: normal;
-          }
+        
           
           .rewardcoin {
             position: absolute;
-            right: 10px;
-            bottom: 4px;
-            font-size: 20px;
-            font-weight: bold;
+            right: 30px;
+            top: 25%;
+            font-size: 15px;
+            
             color: #FFFFFF;
-            font-family: "Fustat", sans-serif;
+            font-family: "Fustat", sans-serif; 
             font-optical-sizing: auto;
-            font-weight: weight;
+            font-weight: bold;
             font-style: normal;
           }
 
@@ -367,12 +404,13 @@ s
 <body>
   
  <div class="container">
-  <a href="https://dolatiaschan.com/4/7698687" target="_blank" rel="noopener">
+  <img src="https://cdn3d.iconscout.com/3d/premium/thumb/shopping-bag-8616497-6855318.png?f=webp" alt="bag " height="60  px" class="adsbutton2">
+  <a href="wallet.html" target="_blank" rel="noopener">
     <div class="adsbutton">
-      <p class="rocket"></p>
-      <div class="coinads"></div>
-      <span class="watchads">Watch Ads</span>
-      <span class="rewardcoin">+1000</span>
+      <div class="rocket"></div>
+      
+      
+      <span class="rewardcoin">Wallet</span>
     </div>
   </a>
                                                
@@ -390,7 +428,7 @@ s
    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/diamond-4976017-4146700.png?f=webp " alt="Additional Image" class="additional-img">
    <div class="container2"><div class="row">
        <button class="button1">Games</button>
-       <button class="button2">Claim</button></div></div>
+       <button class="button2" onclick="location.href='claim.html'" >Claim</button></div></div>
    
  </div>
  <div class="bottom-nav">
@@ -483,6 +521,7 @@ s
 
  
   
+ 
 </script>
 </body>
 </html>
