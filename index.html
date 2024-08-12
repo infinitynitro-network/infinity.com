@@ -30,7 +30,15 @@
 </head>
 <body>
     <div id="webview-container">
-        <iframe src="https://plays.org/game/nuts-and-bolts-screw-puzzle/" frameborder="0"></iframe>
+        <iframe id="webview" src="" frameborder="0"></iframe>
     </div>
+
+    <script>
+        // Set the URL to load in the iframe
+        var url = "https://plays.org/game/nuts-and-bolts-screw-puzzle/";
+
+        // Set the iframe src attribute
+        document.getElementById("webview").src = url;
+    </script>
 </body>
 </html>
